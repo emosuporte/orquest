@@ -4,8 +4,6 @@
 // e manipulação dos logs. O código também incorpora funcionalidades para lidar 
 //com diferentes tipos de consultas e resposta de APIs.
 
-//TESTE TESTE FELIPE
-
 const express = require('express');
 const app = express();
 const path = require('path');
