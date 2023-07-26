@@ -4,6 +4,8 @@
 // e manipulação dos logs. O código também incorpora funcionalidades para lidar 
 //com diferentes tipos de consultas e resposta de APIs.
 
+//TESTE TESTE FELIPE
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -202,7 +204,7 @@ if (req.params.cru) {
 });
 
 app.use('/', router);
-app.listen(process.env.port || 3000);
+app.listen(process.env.port || 3010);
 
-console.log('Running at Port 3000');
+console.log('Running at Port 3010');
 
