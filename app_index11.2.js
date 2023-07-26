@@ -4,7 +4,7 @@
 // e manipulação dos logs. O código também incorpora funcionalidades para lidar 
 //com diferentes tipos de consultas e resposta de APIs.
 
-//OIIIII TIO
+//OIIIII lipe tudo bem?     
 
 const express = require('express');
 const app = express();
