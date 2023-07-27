@@ -117,7 +117,7 @@ const logRequest = (apiURL, method, response, error = null, api, startTimestamp)
         "sucesso_conter": api.sucesso_conter || ''
     };
 
-    logs.push(log);
+    logs = log;
 };
 
 router.post('/buscar/:scope/:cru?', async function (req, res) {
@@ -168,35 +168,35 @@ router.post('/buscar/:scope/:cru?', async function (req, res) {
         }
 
         let resultData = null;
-if (responseAPI.res.headers['content-type'] === 'text/xml') {
-    const parser = new xml2js.Parser();
-    const result = await util.promisify(parser.parseString)(responseAPI.res.data);
-    resultData = result;
-} else {
-    resultData = responseAPI.res.data;
-}
+        if (responseAPI.res.headers['content-type'] === 'text/xml') {
+            const parser = new xml2js.Parser();
+            const result = await util.promisify(parser.parseString)(responseAPI.res.data);
+            resultData = result;
+        } else {
+            resultData = responseAPI.res.data;
+        }
 
-let logsXML = js2xmlparser.parse("logs", logs);
+        let logsXML = js2xmlparser.parse("logs", logs);
 
-if (req.params.cru) {
-    res.status(200).send({
-        responseAPI: resultData,
-        logs: logsXML
-    });
-} else {
-    res.status(200).send({
-        responseAPI: {
-            api: responseAPI.api._id,
-            response: {
-                data: resultData,
-                status: responseAPI.res.status,
-                contentType: responseAPI.res.headers['content-type'],
-            }
-        },
-        logs: logsXML
-    });
-}
-        
+        if (req.params.cru) {
+            res.status(200).send({
+                responseAPI: resultData,
+                logs: logsXML
+            });
+        } else {
+            res.status(200).send({
+                responseAPI: {
+                    api: responseAPI.api._id,
+                    response: {
+                        data: resultData,
+                        status: responseAPI.res.status,
+                        contentType: responseAPI.res.headers['content-type'],
+                    }
+                },
+                logs: logsXML
+            });
+        }
+
     } catch (err) {
         console.log(err);
         res.status(500).send({ message: 'Falha ao processar sua requisição' });
